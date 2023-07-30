@@ -3,6 +3,18 @@
       "baseUrl": ".",
       "paths": {
         "@/*": ["src/*"],
+        "@assets": ["src/assets"],
+        "@assets/*": ["src/assets/*"],
+        "@components": ["src/components"],
+        "@components/*": ["src/components/*"],
+        "@pages": ["src/pages"],
+        "@pages/*": ["src/pages/*"],
+        "@context": ["src/context"],
+        "@context/*": ["src/context/*"],
+        "@types": ["src/types"],
+        "@types/*": ["src/types/*"],
+        "@utils": ["src/utils"],
+        "@utils/*": ["src/utils/*"],
     }
   }
 }

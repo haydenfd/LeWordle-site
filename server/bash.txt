@@ -1,0 +1,2 @@
+alias activate='source venv/bin/activate'
+alias serve='uvicorn main:app --reload'

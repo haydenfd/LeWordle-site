@@ -13,10 +13,13 @@ users = APIRouter(prefix="/api/users")
     current_streak: int
     longest_streak: int
     guess_distribution: [0,0,0,0,0,0,0,0]
+    created_at: string in ISO8601 format 
 
 """
 
 @users.get("/")
-async def get_users():
-    return { "Hi": "Hayden"}
-
+async def get_users(req:Request):
+    if req.cookies.get("user_id"):
+        return {"Found": req.cookies.get("user_id")}
+    else:
+        return {"No": "Lol"}

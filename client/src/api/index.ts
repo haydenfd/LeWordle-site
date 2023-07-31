@@ -1,0 +1,1 @@
+export { endpointsList, buildEndpoint } from './endpoints'

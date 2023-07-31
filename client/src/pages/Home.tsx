@@ -3,7 +3,7 @@ import axios from "axios"
 import { Footer, GameContainer, Navbar, Title } from '@/components'
 import { CookiesProvider } from 'react-cookie';
 import { endpointsList, buildEndpoint } from '@/api';
-import { getCurrentDate, getCurrentMilitaryTime } from '@/utils';
+import { getCurrentMilitaryTime } from '@/utils';
 
 export const Home = () => 
 {
@@ -13,14 +13,11 @@ export const Home = () =>
 
     const endpoint = buildEndpoint(endpointsList.initUser)
 
-
-
     axios.defaults.withCredentials = true;
 
     console.log(endpoint)
     axios.post(endpoint, {
       timestamp: getCurrentMilitaryTime(),
-      datestamp: getCurrentDate(),
     }).then((res) => console.log(res))
 
   }, [])

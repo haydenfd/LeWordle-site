@@ -1,11 +1,21 @@
-import React from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from "react-router-dom";
 
-function App() {
+import * as Pages from '@pages'
+
+export function App() {
   return (
-    <div>
-      Hayden
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Pages.Home />} />
+          <Route path="*" element={<Pages.NotFound />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
-export default App;

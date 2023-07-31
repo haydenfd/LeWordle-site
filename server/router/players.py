@@ -1,4 +1,4 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field
@@ -19,5 +19,5 @@ async def get_all_player_data():
     for document in cursor:
         data.append(ActivePlayerDataModel(**document))
     
-    response = JSONResponse(content=jsonable_encoder(data))
+    response = JSONResponse(content=jsonable_encoder(data), status_code=status.HTTP_200_OK)
     return response

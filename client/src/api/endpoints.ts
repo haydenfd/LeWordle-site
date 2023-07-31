@@ -1,7 +1,7 @@
 let baseUrl:string = "http://localhost:8000"
 
 let endpointsList = {
-    players: "/api/players",
+    fetchAllPlayers: "/api/players/all",
     users: "/api/users",
 }
 

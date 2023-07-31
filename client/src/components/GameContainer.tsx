@@ -107,7 +107,8 @@ const GameContainer = () => {
           </Combobox.Input>
           {
             suggestedPlayers.length > 0 && (
-                <Combobox.Options className="mx-auto text-left w-3/5 md:w-2/5 font-semibold border-b-2 border-x-2 border-lakerGold">
+              <div className="relative w-3/5 md:w-2/5 bg-blue-400 mx-auto">
+                <Combobox.Options className="absolute text-left w-full font-semibold border-b-2 border-x-2 border-lakerGold z-40">
                   {
                     suggestedPlayers.map((player:ActivePlayerDataSingleInterface) => (
                       <Combobox.Option
@@ -121,12 +122,17 @@ const GameContainer = () => {
                     )) 
                   }
                 </Combobox.Options>
+              </div>
               )
             }
         </>
       )}
 
       </Combobox>
+
+      <div className='mt-10'>
+        HAYDEN HAYDEN HAYDEN HAYDEN HAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDEN
+      </div>
     </div>
   )
 }

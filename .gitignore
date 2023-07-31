@@ -13,3 +13,4 @@
 /*/yarn-error.log*
 /server/venv
 /*/*/.env
+.DS_Store

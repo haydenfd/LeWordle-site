@@ -1,2 +1,2 @@
 export { fuseOptions } from "./fuse"
-export { getCurrentDate, getCurrentMilitaryTime } from "./datetime"
+export { getCurrentMilitaryTime } from "./datetime"

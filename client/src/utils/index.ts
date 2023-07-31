@@ -1,0 +1,1 @@
+export { fuseOptions } from "./fuse"

@@ -12,9 +12,6 @@ type ActivePlayerDataSingleInterface = {
   full_name: string
 }
 
-/* 
-  Mouse event input handler type for when the user chooses an option from dropdown menu
-*/
 
 type InputMouseEventType = ChangeEvent<HTMLInputElement>
 
@@ -131,7 +128,6 @@ const GameContainer = () => {
       </Combobox>
 
       <div className='mt-10'>
-        HAYDEN HAYDEN HAYDEN HAYDEN HAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDENHAYDEN
       </div>
     </div>
   )

@@ -2,8 +2,15 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from db.connection import user_collection
-
+from enum import Enum
+from pydantic import BaseModel
 users = APIRouter(prefix="/api/users")
+
+
+class UserStatus(Enum):
+    NEW_USER="NEW_USER"
+    NEW_SESSION_OLD_USER="NEW_SESSION_OLD_USER"
+    OLD_SESSION_OLD_USER="OLD_SESSION_OLD_USER"
 
 """
     id
@@ -13,13 +20,36 @@ users = APIRouter(prefix="/api/users")
     current_streak: int
     longest_streak: int
     guess_distribution: [0,0,0,0,0,0,0,0]
-    created_at: string in ISO8601 format 
+    created_at: string in ISO8601 format -- done
 
 """
 
-@users.get("/")
-async def get_users(req:Request):
-    if req.cookies.get("user_id"):
-        return {"Found": req.cookies.get("user_id")}
-    else:
-        return {"No": "Lol"}
+
+
+
+class DataPayload(BaseModel):
+    timestamp: str
+    datestamp: str
+
+@users.post("/init")
+async def initialize(req:Request, payload: DataPayload):
+    timestamp = payload.timestamp
+    datestamp = payload.datestamp
+    user_id = req.cookies.get("user_id")
+    session_id = req.cookies.get("session_id")
+
+    response_status=None
+
+
+    if not session_id and not user_id:
+        response_status = UserStatus.NEW_USER
+    elif user_id and not session_id:
+        response_status = UserStatus.NEW_SESSION_OLD_USER
+    elif user_id and session_id:
+        response_status = UserStatus.OLD_SESSION_OLD_USER
+  
+    response = JSONResponse(content=jsonable_encoder({"response_status": response_status, "timestamp": timestamp, "datestamp": datestamp}), status_code=status.HTTP_200_OK)
+    return response
+
+
+

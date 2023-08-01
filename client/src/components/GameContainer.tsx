@@ -21,19 +21,28 @@ const GameContainer = () => {
 
   const [suggestedPlayers, setSuggestedPlayers] = useState<Array<ActivePlayerDataSingleInterface>>([])
 
+  const [guessedPlayers, setGuessedPlayers] = useState<Array<any>>([])
+
   const [selected, setSelected] = useState<ActivePlayerDataSingleInterface | null>(null)
 
   const [searchInput, setSearchInput] = useState<string>('')
   
-  let fuzzySearchFilter = (search: string) => 
-  {
-    let fuse = new Fuse(allPlayers, fuseOptions)
-    let results = fuse.search(search).splice(0,5)
-  }
 
   const handleSearchInputChange = (e:InputMouseEventType) => 
   {
     setSearchInput(e.target.value)
+  }
+
+  const ifGuessed = (player: ActivePlayerDataSingleInterface) => {
+
+    for (let i = 0; i < guessedPlayers.length; i++)
+    {
+      if (guessedPlayers[i]?.full_name === player.full_name)
+      {
+        return true;
+      }
+    }
+    return false
   }
 
   useEffect(() => {
@@ -45,7 +54,12 @@ const GameContainer = () => {
       let players:Array<ActivePlayerDataSingleInterface> = []
       for (let i = 0; i < fuseResults.length; i++)
       {
-        players.push(fuseResults[i].item)
+        let player = fuseResults[i].item
+
+        if (!ifGuessed(player))
+        {
+          players.push(fuseResults[i].item)
+        }
       }
 
       setSuggestedPlayers(players)
@@ -80,6 +94,7 @@ const GameContainer = () => {
   useEffect(() => {
     y(x + 1)
     setSearchInput('')
+    setGuessedPlayers([...guessedPlayers, selected])
   }, [selected])
   
   return (
@@ -128,6 +143,14 @@ const GameContainer = () => {
       </Combobox>
 
       <div className='mt-10'>
+        <ul>
+          {
+            guessedPlayers.length > 0 &&
+            guessedPlayers.map((player:any) =>  (
+              <li>{player?.full_name}</li>
+            ))
+          }
+        </ul>
       </div>
     </div>
   )

@@ -21,6 +21,26 @@ users = APIRouter(prefix="/api/users")
 """
 
 
+def session_serialize(session:dict) -> dict:
+    return dict({
+        "user_id": session["user_id"],
+        "session_id": session["session_id"]
+    })
+
+def user_serialize(user:dict) -> dict:
+    return dict({
+        "user_id": user["user_id"],
+        "games_played": user["games_played"],
+        "games_won": user["games_won"],
+        "current_streak": user["current_streak"],
+        "longest_streak": user["longest_streak"],
+        "guess_distribution": user["guess_distribution"],
+        "avg_guesses": user["avg_guesses"],
+        "used_hint_count": user["used_hint_count"]
+    })
+
+
+
 @users.post("/init")
 async def initialize(req:Request):
 
@@ -76,17 +96,41 @@ async def initialize(req:Request):
             "user_data": new_user,
             "session_data": new_session,
         }))
-    
-
-
-    #    new_session_id = 
-
-
 
     elif user_id and not session_id:
         response_status = UserStatus.NEW_SESSION_OLD_USER
+        user_data = user_serialize(user_collection.find_one({"user_id": int(user_id)},{'_id': 0}))
+
+        current_date_time = datetime.now()
+        new_session_id = str(current_date_time.date()) + user_id
+
+        new_session = dict({
+            "session_id": new_session_id,
+            "user_id": int(user_id)
+        })
+
+
+        result_second = session_collection.insert_one(dict(new_session))
+
+        return JSONResponse(jsonable_encoder({
+            "response_status": response_status,
+            "user_data": user_data,
+            "session_data": new_session,
+        }))
+    
+
+
     elif user_id and session_id:
         response_status = UserStatus.OLD_SESSION_OLD_USER
+        user_data = user_serialize(user_collection.find_one({"user_id": int(user_id)}, {'_id': 0}))
+        session_data = session_serialize(session_collection.find_one({"session_id": session_id}, {'_id': 0}))
+
+        return JSONResponse(jsonable_encoder({
+            "response_status": response_status,
+            "user_data": user_data,
+            "session_data": session_data,
+        })) 
+
   
     return JSONResponse(jsonable_encoder(
         {

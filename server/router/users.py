@@ -2,18 +2,12 @@ from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from db.connection import user_collection, session_collection
-from enum import Enum
 from pydantic import BaseModel  
-from datetime import datetime, timedelta
-
+from datetime import datetime
+from schemas.users_schemas import UserStatus
 
 users = APIRouter(prefix="/api/users")
 
-
-class UserStatus(Enum):
-    NEW_USER="NEW_USER"
-    NEW_SESSION_OLD_USER="NEW_SESSION_OLD_USER"
-    OLD_SESSION_OLD_USER="OLD_SESSION_OLD_USER"
 
 """
     id
@@ -56,14 +50,18 @@ async def initialize(req:Request):
 
         new_user = dict({
             "user_id": new_id,
-            "games_played": 0
+            "games_played": 0,
+            "games_won": 0, 
+            "current_streak": 0, 
+            "longest_streak": 0, 
+            "guess_distribution": [0,0,0,0,0,0,0],
+            "avg_guesses": 0.00,
+            "used_hint_count": 0,
         })
 
         result = user_collection.insert_one(dict(new_user))
 
         current_date_time = datetime.now()
-        end_of_day = current_date_time.replace(hour=0, minute=0, second=0, microsecond=0) + timedelta(days=1)
-
         new_session_id = str(current_date_time.date()) + str(new_id)
 
         new_session = dict({

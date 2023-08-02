@@ -14,21 +14,21 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
  return (
 
     <Dialog
-      className="fixed inset-0 z-10 overflow-y-auto"
+      className="fixed inset-0 z-10 overflow-y-scroll"
       open={open}
       onClose={onClose}
     >
-       <div className="flex items-center justify-center min-h-screen">
+       <div className="flex items-center justify-center max-h-3xl w-1/5 mx-auto">
         <Dialog.Overlay className="fixed inset-0 bg-black opacity-50" />
 
-        <div className="relative bg-white rounded-md max-w-md">
+        <div className="relative bg-gray-300 rounded-md">
           <div className="bg-lakerPurple text-white p-2 rounded-t-md">
             <div className="flex items-center justify-between">
               <div className="flex items-center justify-center w-full">
                 <div className="text-lg font-normal">Teams Help</div>
               </div>
               <button
-                className="text-white hover:bg-lakerGold transform scale-125 transition ease-in-out duration-300"
+                className="text-white hover:bg-lakerGold transform scale-125 transition ease-in-out duration-300 focus:outline-none outline-none"
                 onClick={onClose}
               >
                 <svg
@@ -51,14 +51,15 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
 
             {/* Dialog Body */}
 
-          <div className="mt-4 p-3 font-noto">
+          <div className="p-10 font-noto">
+            <p className='font-normal text-lg'>Quickly reference which teams are in each conference/division!</p>
           <Tab.Group>
-                <Tab.List className="flex my-4 w-full justify-center">
-                  <Tab>
+                <Tab.List className="flex my-6 w-full justify-center">
+                  <Tab className="focus:outline-none outline-none">
                     {({ selected }) => (
                       <button
-                        className={`px-8 py-2 ${
-                          selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                        className={`px-8 py-2 focus:outline-none outline-none active:outline-none ${
+                          selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                         }`}
                         onClick={() => setActiveTab('west')}
                       >
@@ -66,11 +67,11 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
                       </button>
                     )}
                   </Tab>
-                  <Tab>
+                  <Tab className="focus:outline-none outline-none">
                     {({ selected }) => (
                       <button
-                        className={`px-8 py-2 ${
-                          selected ? 'bg-blue-500 text-white shadow-none' : 'bg-gray-200 text-gray-800'
+                        className={`px-8 py-2 focus:outline-none outline-none active:outline-none ${
+                          selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                         }`}
                         onClick={() => setActiveTab('east')}
                       >
@@ -85,33 +86,33 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
                     <div className="space-y-4">
                       <Tab.Group>
                         <Tab.List className="flex justify-center flex-nowrap">
-                          <Tab>
+                          <Tab className="focus:outline-none outline-none">
                             {({ selected }) => (
                               <button
-                                className={`px-8 py-2 rounded-l-full ${
-                                  selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                className={`px-8 focus:outline-none outline-none active:outline-none py-2 rounded-l-full ${
+                                  selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                                 }`}
                               >
                                 PAC
                               </button>
                             )}
                           </Tab>
-                          <Tab>
+                          <Tab className="focus:outline-none outline-none">
                             {({ selected }) => (
                               <button
-                                className={`px-8 py-2  ${
-                                  selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                className={`px-8 focus:outline-none outline-none active:outline-none py-2  ${
+                                  selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                                 }`}
                               >
                                 NW
                               </button>
                             )}
                           </Tab>
-                          <Tab>
+                          <Tab className="focus:outline-none outline-none">
                             {({ selected }) => (
                               <button
-                                className={`px-8 py-2 rounded-r-full  ${
-                                  selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                className={`px-8 focus:outline-none outline-none active:outline-none py-2 rounded-r-full  ${
+                                  selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                                 }`}
                               >
                                 SW
@@ -122,17 +123,17 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
 
                         <Tab.Panels>
                           <Tab.Panel>
-                            <div className="flex gap-4 flex-wrap font-normal">
+                            <div className="flex gap-4 flex-wrap font-normal justify-evenly">
                               { pac_data }
                             </div>
                           </Tab.Panel>
                           <Tab.Panel>
-                            <div className="flex gap-4 flex-wrap font-normal">
+                            <div className="flex gap-4 flex-wrap font-normal justify-evenly">
                              { nw_data }
                             </div>
                           </Tab.Panel>
                           <Tab.Panel>
-                            <div className="flex gap-4 flex-wrap font-normal">
+                            <div className="flex gap-4 flex-wrap font-normal justify-evenly">
                               { sw_data }  
                             </div>
                           </Tab.Panel>
@@ -144,33 +145,33 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
                     <div className="space-y-4">
                       <Tab.Group>
                         <Tab.List className="flex justify-center flex-nowrap">
-                          <Tab>
+                          <Tab className="focus:outline-none outline-none">
                             {({ selected }) => (
                               <button
-                                className={`px-8 py-2  rounded-l-full  ${
-                                  selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                className={`px-8 py-2 focus:outline-none outline-none active:outline-none  rounded-l-full  ${
+                                  selected ? 'bg-lakerPurple text-lakerGold outline-none' : 'bg-gray-400 text-gray-800'
                                 }`}
                               >
                                 ATL
                               </button>
                             )}
                           </Tab>
-                          <Tab>
+                          <Tab className="focus:outline-none outline-none">
                             {({ selected }) => (
                               <button
-                                className={`px-8 py-2  ${
-                                  selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                className={`px-8 py-2 focus:outline-none outline-none active:outline-none ${
+                                  selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                                 }`}
                               >
                                 CEN
                               </button>
                             )}
                           </Tab>
-                          <Tab>
+                          <Tab className="focus:outline-none outline-none">
                             {({ selected }) => (
                               <button
-                                className={`px-8 py-2  rounded-r-full ${
-                                  selected ? 'bg-blue-500 text-white' : 'bg-gray-200 text-gray-800'
+                                className={`px-8 py-2 focus:outline-none outline-none active:outline-none rounded-r-full ${
+                                  selected ? 'bg-lakerPurple text-lakerGold' : 'bg-gray-400 text-gray-800'
                                 }`}
                               >
                                 SE
@@ -181,17 +182,17 @@ export const TeamHelpModal = ({open, onClose}: ModalProps) => {
 
                         <Tab.Panels>
                           <Tab.Panel>
-                            <div className="flex gap-4 flex-wrap font-normal">
+                            <div className="flex gap-4 flex-wrap font-normal justify-evenly">
                                 { atl_data }
                             </div>
                           </Tab.Panel>
                           <Tab.Panel>
-                            <div className="flex gap-4 flex-wrap font-normal">
+                            <div className="flex gap-4 flex-wrap font-normal justify-evenly">
                               { cen_data }
                             </div>
                           </Tab.Panel>
                           <Tab.Panel>
-                            <div className="flex gap-4 flex-wrap font-normal">
+                            <div className="flex gap-4 flex-wrap font-normal justify-evenly">
                               { se_data }
                             </div>
                           </Tab.Panel>

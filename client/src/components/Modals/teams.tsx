@@ -4,72 +4,72 @@ import * as Logos from '@assets'
 export const pac_data =
  [
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.LAL} className="w-14 h-14"/>
-        <p>LAL</p>
+        <img src={Logos.LAL} className="w-20 h-20" alt=""/>
+        <p className="text-xl">LAL</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.PHX} className="w-14 h-14"/>
-        <p>PHX</p>
+        <img src={Logos.PHX} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">PHX</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.LAC} className="w-14 h-14"/>
-        <p>LAC</p>
+        <img src={Logos.LAC} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">LAC</p>
     </div>,    
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.SAC} className="w-14 h-14"/>
-        <p>SAC</p>
+        <img src={Logos.SAC} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">SAC</p>
     </div>,      
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.GSW} className="w-14 h-14"/>
-        <p>GSW</p>
+        <img src={Logos.GSW} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">GSW</p>
     </div>,
 ]
 
 export const nw_data =
  [
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.DEN} className="w-14 h-14"/>
-        <p>DEN</p>
+        <img src={Logos.DEN} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">DEN</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.MIN} className="w-14 h-14"/>
-        <p>MIN</p>
+        <img src={Logos.MIN} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">MIN</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.OKC} className="w-14 h-14"/>
-        <p>OKC</p>
+        <img src={Logos.OKC} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">OKC</p>
     </div>,    
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.POR} className="w-14 h-14"/>
-        <p>POR</p>
+        <img src={Logos.POR} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">POR</p>
     </div>,      
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.UTA} className="w-14 h-14"/>
-        <p>UTA</p>
+        <img src={Logos.UTA} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">UTA</p>
     </div>,
 ]
 
 export const sw_data =
  [
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.DAL} className="w-14 h-14"/>
-        <p>DAL</p>
+        <img src={Logos.DAL} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">DAL</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.SAS} className="w-14 h-14"/>
-        <p>SAS</p>
+        <img src={Logos.SAS} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">SAS</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.MEM} className="w-14 h-14"/>
-        <p>MEM</p>
+        <img src={Logos.MEM} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">MEM</p>
     </div>,    
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.HOU} className="w-14 h-14"/>
-        <p>HOU</p>
+        <img src={Logos.HOU} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">HOU</p>
     </div>,      
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.NOP} className="w-14 h-14"/>
-        <p>NOP</p>
+        <img src={Logos.NOP} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">NOP</p>
     </div>,
 ]
 
@@ -77,72 +77,72 @@ export const sw_data =
 export const atl_data =
  [
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.NYK} className="w-14 h-14"/>
-        <p>NYK</p>
+        <img src={Logos.NYK} className="w-20 h-20"alt=""/>
+        <p  className="text-xl">NYK</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.BKN} className="w-14 h-14"/>
-        <p>BKN</p>
+        <img src={Logos.BKN} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">BKN</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.BOS} className="w-14 h-14"/>
-        <p>BOS</p>
+        <img src={Logos.BOS} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">BOS</p>
     </div>,    
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.PHI} className="w-14 h-14"/>
-        <p>PHI</p>
+        <img src={Logos.PHI} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">PHI</p>
     </div>,      
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.TOR} className="w-14 h-14"/>
-        <p>TOR</p>
+        <img src={Logos.TOR} className="w-20 h-20" alt=""/>
+        <p className="text-xl">TOR</p>
     </div>,
 ]
 
 export const se_data =
  [
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.MIA} className="w-14 h-14"/>
-        <p>MIA</p>
+        <img src={Logos.MIA} className="w-20 h-20" alt=""/>
+        <p  className="text-xl">MIA</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.ORL} className="w-14 h-14"/>
-        <p>ORL</p>
+        <img src={Logos.ORL} className="w-20 h-20" alt=""/>
+        <p className="text-xl">ORL</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.CHA} className="w-14 h-14"/>
-        <p>CHA</p>
+        <img src={Logos.CHA} className="w-20 h-20" alt=""/>
+        <p className="text-xl">CHA</p>
     </div>,    
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.ATL} className="w-14 h-14"/>
-        <p>ATL</p>
+        <img src={Logos.ATL} className="w-20 h-20" alt=""/>
+        <p className="text-xl">ATL</p>
     </div>,      
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.WAS} className="w-14 h-14"/>
-        <p>WAS</p>
+        <img src={Logos.WAS} className="w-20 h-20" alt=""/>
+        <p className="text-xl">WAS</p>
     </div>,
 ]
 
 export const cen_data =
  [
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.MIL} className="w-14 h-14"/>
-        <p>MIL</p>
+        <img src={Logos.MIL} className="w-20 h-20" alt=""/>
+        <p className="text-xl">MIL</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.CLE} className="w-14 h-14"/>
-        <p>CLE</p>
+        <img src={Logos.CLE} className="w-20 h-20" alt=""/>
+        <p className="text-xl">CLE</p>
     </div>,
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.IND} className="w-14 h-14"/>
-        <p>IND</p>
+        <img src={Logos.IND} className="w-20 h-20" alt=""/>
+        <p className="text-xl">IND</p>
     </div>,    
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.CHI} className="w-14 h-14"/>
-        <p>CHI</p>
+        <img src={Logos.CHI} className="w-20 h-20" alt=""/>
+        <p className="text-xl">CHI</p>
     </div>,      
     <div className="flex flex-col p-1 justify-center text-center">
-        <img src={Logos.DET} className="w-14 h-14"/>
-        <p>DET</p>
+        <img src={Logos.DET} className="w-20 h-20" alt=""/>
+        <p className="text-xl">DET</p>
     </div>,
 ]
 

@@ -19,21 +19,21 @@ export const Navbar = () => {
 
       <button 
       onClick={() => handleIsGuideModalOpen()}
-      className='font-normal md:text-lg transition-all ease-in-out text-md bg-transparent text-white hover:text-lakerGold hover:scale-125 hover:font-semibold'
+      className='font-normal md:text-lg transition-all ease-in-out text-md bg-transparent text-white hover:text-lakerGold hover:scale-125 hover:font-semibold focus:outline-none outline-none'
       >
         How To Play
       </button>
 
       <button 
       onClick={() => handleIsTeamModalOpen()}
-      className='font-normal md:text-lg transition-all ease-in-out text-md bg-transparent text-white hover:text-lakerGold hover:scale-125 hover:font-semibold'
+      className='font-normal md:text-lg transition-all ease-in-out text-md bg-transparent text-white hover:text-lakerGold hover:scale-125 hover:font-semibold focus:outline-none outline-none'
       >
         Teams Help
       </button>
 
       <button 
       onClick={() => handleIsStatsModalOpen()}
-      className='font-normal md:text-lg transition-all ease-in-out bg-transparent text-md text-white hover:text-lakerGold hover:font-semibold hover:scale-125'
+      className='font-normal md:text-lg transition-all ease-in-out bg-transparent text-md text-white hover:text-lakerGold hover:font-semibold hover:scale-125  focus:outline-none outline-none'
       >
         Stats
       </button>

@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react'
-import {MyDialog} from './Modals/HelpModal'
+import React, { useState } from 'react'
+
+import * as Modals from './Modals'
 
 export const Navbar = () => {
-
 
   const [isTeamHelpModalOpen, setIsTeamHelpModalOpen] = useState<boolean>(false)
   const [isGuideModalOpen, setIsGuideModalOpen] = useState<boolean>(false)
@@ -13,8 +13,6 @@ export const Navbar = () => {
   const handleIsGuideModalOpen = () : void => setIsGuideModalOpen((prev) => !prev)
   const handleIsStatsModalOpen = () : void => setIsStatsModalOpen((prev) => !prev)
 
-
-  // useEffect(() => console.log(isTeamHelpModalOpen), [isTeamHelpModalOpen])
  
   return (
     <nav className='w-full bg-lakerPurple py-2 mb-4 flex justify-center gap-12'>
@@ -39,7 +37,11 @@ export const Navbar = () => {
       >
         Stats
       </button>
-      {/* <MyDialog open={isModalOpen} onClose={handleModalToggle} /> */}
+
+      <Modals.TeamHelpModal open={isTeamHelpModalOpen} onClose={handleIsTeamModalOpen}/>
+      <Modals.GuideModal open={isGuideModalOpen} onClose={handleIsGuideModalOpen}/>
+      <Modals.StatsModal open={isStatsModalOpen} onClose={handleIsStatsModalOpen}/>
+
     </nav>
   )
 }

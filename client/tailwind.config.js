@@ -8,6 +8,9 @@ module.exports = {
       colors: {
         lakerPurple: "#552583",
         lakerGold: "#FDB927",
+      }, 
+      fontFamily: {
+        noto: ["Noto Sans", "sans-serif"],
       }
     },
   },

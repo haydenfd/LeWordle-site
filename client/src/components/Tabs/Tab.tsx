@@ -5,7 +5,7 @@ import { TabProps } from '@/types';
 
 export const Tab: React.FC<TabProps> = ({ tab }) => {
   return (
-    <div className="mt-4 flex space-x-4 flex-wrap w-3/4 mx-auto justify-around">
+    <div className="mt-12 flex flex-wrap w-3/4 mx-auto justify-around">
       {tab == 'Pacific' && pac_data.map((item, index) => (
         <TabItem key={index} img={item.img} tricode={item.tricode} />
       ))}

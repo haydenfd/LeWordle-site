@@ -99,7 +99,6 @@ const GameContainer = () => {
   
   return (
     <div className='min-h-[60vh] text-center'>
-
       <Combobox as={Fragment} value={selected} onChange={(e:ActivePlayerDataSingleInterface) => {
         setSelected(e)
         console.log(e)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Tab from './Tab'; // Import the Tab component
 
 interface TabGroupProps {
@@ -13,6 +13,10 @@ const TabGroup: React.FC<TabGroupProps> = ({ region }) => {
       ? ['Pacific', 'Southwest', 'Northwest']
       : ['Atlantic', 'Central', 'Southeast'];
 
+    useEffect(() => {
+        setActiveTab(tabOptions[0]); // Set default tab when region changes
+    }, [region]);
+    
   return (
     <div className="mt-4">
       <div className="flex space-x-4 justify-center">

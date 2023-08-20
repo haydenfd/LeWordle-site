@@ -15,7 +15,7 @@ const Tab: React.FC<TabProps> = ({ tab }) => {
     <div className="mt-4">
       {data.map((item, index) => (
         <div key={index} className="p-4 flex items-center space-x-4">
-          <p>{item.text}</p>
+          <p>{tab as string}</p>
         </div>
       ))}
     </div>

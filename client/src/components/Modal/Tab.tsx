@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { atl_data, cen_data, nw_data, pac_data, se_data, sw_data } from '@/utils/guide_data';
 import { TabItem } from './TabItem';
+
 interface TabProps {
   tab: string;
 }

@@ -1,12 +1,9 @@
 import React from 'react';
 import { atl_data, cen_data, nw_data, pac_data, se_data, sw_data } from '@/utils/guide_data';
 import { TabItem } from './TabItem';
+import { TabProps } from '@/types';
 
-interface TabProps {
-  tab: string;
-}
-
-const Tab: React.FC<TabProps> = ({ tab }) => {
+export const Tab: React.FC<TabProps> = ({ tab }) => {
   return (
     <div className="mt-4 flex space-x-4 flex-wrap w-3/4 mx-auto justify-around">
       {tab == 'Pacific' && pac_data.map((item, index) => (
@@ -31,4 +28,3 @@ const Tab: React.FC<TabProps> = ({ tab }) => {
   );
 };
 
-export default Tab;

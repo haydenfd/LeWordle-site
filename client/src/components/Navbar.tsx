@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { GenericModal } from './Modal/GenericModal';
-import TabPanel from './Modal/TabPanel';
+import { TabPanel } from './Tabs';
 
 export const Navbar = () => {
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import TabGroup from './TabGroup'; // Import the TabGroup component
+import {TabGroup} from './TabGroup'; 
 
-const TabPanel: React.FC = () => {
+export const TabPanel: React.FC = () => {
   const [activeTab, setActiveTab] = useState('West'); // Default to West
 
   return (
@@ -29,4 +29,3 @@ const TabPanel: React.FC = () => {
   );
 };
 
-export default TabPanel;

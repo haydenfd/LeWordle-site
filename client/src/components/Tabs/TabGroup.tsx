@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Tab from './Tab'; // Import the Tab component
+import {Tab} from './Tab'; // Import the Tab component
+import { TabGroupProps } from '@/types';
 
-interface TabGroupProps {
-  region: string;
-}
-
-const TabGroup: React.FC<TabGroupProps> = ({ region }) => {
+export const TabGroup: React.FC<TabGroupProps> = ({ region }) => {
   const [activeTab, setActiveTab] = useState('Pacific'); // Default tab based on region
 
   const tabOptions =
@@ -37,4 +34,3 @@ const TabGroup: React.FC<TabGroupProps> = ({ region }) => {
   );
 };
 
-export default TabGroup;

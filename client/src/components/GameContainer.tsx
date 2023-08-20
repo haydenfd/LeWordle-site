@@ -1,5 +1,5 @@
 import { buildEndpoint, endpointsList } from '@/api'
-import React, {Fragment, useEffect, useState, ChangeEvent } from 'react'
+import {Fragment, useEffect, useState, ChangeEvent } from 'react'
 import axios from 'axios'
 import { fuseOptions } from '@/utils'
 import Fuse from 'fuse.js'
@@ -89,7 +89,7 @@ const GameContainer = () => {
 
   }, [])
 
-  let [x, y] = useState<number>(1)
+  let [x, y] = useState<number>(0)
 
   useEffect(() => {
     y(x + 1)
@@ -110,7 +110,7 @@ const GameContainer = () => {
         <>
           <Combobox.Input as={Fragment}>
           <input placeholder={`Guess ${x} of 7`}
-              className="font-semibold border-2 border-lakerPurple w-3/5 md:w-2/5 m-auto p-2 mt-6 focus:outline-none focus:border-lakerGold md:text-lg"
+              className="font-semibold border-2 border-lakerPurple w-3/5 md:w-2/5 m-auto p-2 focus:outline-none focus:border-lakerGold md:text-lg"
               value={searchInput} 
               type="text"
               onChange={handleSearchInputChange}

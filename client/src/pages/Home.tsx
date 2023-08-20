@@ -59,7 +59,7 @@ export const Home = () =>
 
 
   return (
-      <div className='flex flex-col min-h-full'>
+      <div className='flex flex-col min-h-[100vh] justify-between'>
         <Navbar />
         <Title />
         <GameContainer />

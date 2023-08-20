@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { GenericModal } from './Modal/GenericModal';
+import TabPanel from './Modal/TabPanel';
 
 export const Navbar = () => {
 
@@ -10,15 +11,6 @@ export const Navbar = () => {
   const closeGuideModal = () => setGuideModalOpen(false)
   const closeStatsModal = () => setStatsModalOpen(false)
   const closeTeamModal = () => setTeamModalOpen(false)
-  // const [modalOpen, setModalOpen] = useState(false);
-
-  // const openModal = () => {
-  //   setModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setModalOpen(false);
-  // };
 
   return (
     <nav className='w-full bg-lakerPurple py-2 flex justify-center gap-12'>
@@ -35,7 +27,9 @@ export const Navbar = () => {
       >
         Teams Help
       </button>
-      <GenericModal isOpen={teamModalOpen} onClose={() => closeTeamModal()} title="Team Guide"/>
+      <GenericModal isOpen={teamModalOpen} onClose={() => closeTeamModal()} title="Team Guide">
+        <TabPanel />
+      </GenericModal>
 
       <button onClick={() => setStatsModalOpen(true)}
       className='font-normal md:text-lg transition-all ease-in-out bg-transparent text-md text-white hover:text-lakerGold hover:font-semibold hover:scale-110 focus:outline-none outline-none'

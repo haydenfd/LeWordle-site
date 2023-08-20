@@ -1,12 +1,8 @@
+import React, { ReactNode, useEffect } from 'react';
+import { ModalProps } from '@/types';
 
-import React, { useState, useEffect } from 'react';
-
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
+export const GenericModal: React.FC<ModalProps> = ({ isOpen, onClose, children, title }) => {
+    
   const closeModalOnOutsideClick = (event: MouseEvent) => {
     const modalContainer = document.querySelector('.modal-container');
     if (modalContainer && !modalContainer.contains(event.target as Node)) {
@@ -33,7 +29,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
       <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
       <div className="z-10 bg-white rounded-lg w-96 h-96 modal-container relative bottom-1/5 flex flex-col">
         <div className='w-full bg-lakerPurple text-white font-semibold text-center py-2 text-2xl'>
-          LeWordle Guide
+          {title}
         </div>
         <button className="absolute top-3 right-2 text-white hover:scale-125 hover:text-lakerGold" onClick={onClose}>
           <svg
@@ -52,6 +48,7 @@ export const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
           </svg>
         </button>
         <h1>HAYDEN</h1>
+        {children}
       </div>
     </div>
   );

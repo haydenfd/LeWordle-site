@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {TabGroup} from './TabGroup'; 
 
-
 export const TabPanel: React.FC = () => {
   const [activeTab, setActiveTab] = useState('West'); // Default to West
 

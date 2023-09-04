@@ -26,8 +26,8 @@ export const GenericModal: React.FC<ModalProps> = ({ isOpen, onClose, children, 
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="absolute inset-0 bg-gray-800 opacity-50"></div>
-      <div className="z-10 bg-white rounded-lg min-w-[50vw] min-h-[30vh] modal-container relative bottom-1/4 flex flex-col">
+      <div className="absolute inset-0 bg-gray-800 opacity-40"></div>
+      <div className="z-10 bg-white rounded-lg min-w-[50vw] min-h-[30vh] modal-container relative top-[-8rem] flex flex-col">
         <div className='w-full bg-lakerPurple text-white font-semibold text-center py-2 text-2xl'>
           {title}
         </div>

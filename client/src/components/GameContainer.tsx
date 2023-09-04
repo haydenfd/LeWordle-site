@@ -18,15 +18,11 @@ type InputMouseEventType = ChangeEvent<HTMLInputElement>
 const GameContainer = () => {
 
   const [allPlayers, setAllPlayers] = useState<Array<ActivePlayerDataSingleInterface>>([])
-
   const [suggestedPlayers, setSuggestedPlayers] = useState<Array<ActivePlayerDataSingleInterface>>([])
-
   const [guessedPlayers, setGuessedPlayers] = useState<Array<any>>([])
-
   const [selected, setSelected] = useState<ActivePlayerDataSingleInterface | null>(null)
-
   const [searchInput, setSearchInput] = useState<string>('')
-  
+  let [guessesMade, setGuessesMade] = useState<number>(0)
 
   const handleSearchInputChange = (e:InputMouseEventType) => 
   {
@@ -49,7 +45,7 @@ const GameContainer = () => {
 
     const recommendPlayers = () => {
       const fuse = new Fuse(allPlayers, fuseOptions)
-      let fuseResults = fuse.search(searchInput).splice(0,5)
+      let fuseResults = fuse.search(searchInput).splice(0,7)
       
       let players:Array<ActivePlayerDataSingleInterface> = []
       for (let i = 0; i < fuseResults.length; i++)
@@ -89,10 +85,12 @@ const GameContainer = () => {
 
   }, [])
 
-  let [x, y] = useState<number>(0)
 
   useEffect(() => {
-    y(x + 1)
+    
+    if (!selected) return 
+
+    setGuessesMade(guessesMade + 1)
     setSearchInput('')
     setGuessedPlayers([...guessedPlayers, selected])
   }, [selected])
@@ -101,14 +99,13 @@ const GameContainer = () => {
     <div className='min-h-[60vh] text-center'>
       <Combobox as={Fragment} value={selected} onChange={(e:ActivePlayerDataSingleInterface) => {
         setSelected(e)
-        console.log(e)
       }
       }>
 
       {({ activeOption }) => (
         <>
           <Combobox.Input as={Fragment}>
-          <input placeholder={`Guess ${x} of 7`}
+          <input placeholder={`Guess ${guessesMade + 1} of 7`}
               className="font-semibold border-2 border-lakerPurple w-3/5 md:w-2/5 m-auto p-2 focus:outline-none focus:border-lakerGold md:text-lg"
               value={searchInput} 
               type="text"
@@ -142,14 +139,29 @@ const GameContainer = () => {
       </Combobox>
 
       <div className='mt-10'>
-        <ul>
+        {/* <ul>
           {
             guessedPlayers.length > 0 &&
             guessedPlayers.map((player:any) =>  (
               <li>{player?.full_name}</li>
             ))
           }
-        </ul>
+        </ul> */}
+        <div className="w-full bg-red-400 p-1 text-white"> {/* table container */}
+          <div className='w-[80%] mx-auto grid grid-cols-8 font-semibold border-b-4 border-b-lakerPurple'> {/* game table */}
+            <div className=" bg-blue-500">
+              <h1>Name</h1>
+            </div>
+            
+            <h1>Team</h1>
+            <h1>Conf</h1>
+            <h1>Div</h1>
+            <h1>Pos</h1>
+            <h1>Height</h1>
+            <h1>Age</h1>
+            <h1>#</h1>
+          </div>
+        </div>
       </div>
     </div>
   )

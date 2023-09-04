@@ -10,7 +10,7 @@ from config.config import (
 load_dotenv()
 print(db_cluster, db_user, db_pass)
 uri = "mongodb+srv://" + db_user + ":" + db_pass + "@" + db_cluster + "?retryWrites=true&w=majority"
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = MongoClient(uri)
 
 database = client["LeWordle"]
 

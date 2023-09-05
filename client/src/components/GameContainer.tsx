@@ -4,6 +4,7 @@ import axios from 'axios'
 import { fuseOptions } from '@/utils'
 import Fuse from 'fuse.js'
 import { Combobox } from "@headlessui/react"
+import React from "react";
 
 type ActivePlayerDataSingleInterface = {
   _id: number,
@@ -138,29 +139,30 @@ const GameContainer = () => {
 
       </Combobox>
 
-      <div className='mt-10'>
-        {/* <ul>
-          {
-            guessedPlayers.length > 0 &&
-            guessedPlayers.map((player:any) =>  (
-              <li>{player?.full_name}</li>
-            ))
-          }
-        </ul> */}
-        <div className="w-full bg-red-400 p-1 text-white"> {/* table container */}
-          <div className='w-[80%] mx-auto grid grid-cols-8 font-semibold border-b-4 border-b-lakerPurple'> {/* game table */}
-            <div className=" bg-blue-500">
-              <h1>Name</h1>
-            </div>
-            
-            <h1>Team</h1>
-            <h1>Conf</h1>
-            <h1>Div</h1>
-            <h1>Pos</h1>
-            <h1>Height</h1>
-            <h1>Age</h1>
-            <h1>#</h1>
+      <div className='mt-6'>
+        <div className="w-full p-1 text-lakerPurple">
+        <div className="flex flex-col w-[85%] mx-auto">
+          <div className="grid grid-cols-10 border-y-4 border-y-lakerPurple">
+            <div className="col-span-3 text-center"></div>
+            <div className="col-span-1 text-center">Team</div>
+            <div className="col-span-1 text-center">Conf</div>
+            <div className="col-span-1 text-center">Div</div>
+            <div className="col-span-1 text-center">Pos</div>
+            <div className="col-span-1 text-center">Ht</div>
+            <div className="col-span-1 text-center">Age</div>
+            <div className="col-span-1 text-center">#</div>            
           </div>
+
+          {guessedPlayers.map((player) => (
+            <div className="grid grid-cols-5" key={player.id}>
+              <div className="col-span-1 w-1/5">{player.name}</div>
+              <div className="col-span-1">{player.team}</div>
+              <div className="col-span-1">{player.conf}</div>
+              <div className="col-span-1">{player.div}</div>
+              <div className="col-span-1">{player.pos}</div>
+            </div>
+          ))}
+        </div>
         </div>
       </div>
     </div>

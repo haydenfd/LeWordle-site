@@ -98,7 +98,6 @@ const GameContainer = () => {
       await axios(`http://localhost:8000/api/players/guess_player/${id}`).then((res) => {
         console.log(res.data)
         setGuessedPlayers([...guessedPlayers, res.data])
-        console.log(guessedPlayers)
       })
     }
 
@@ -166,8 +165,8 @@ const GameContainer = () => {
             <div className="grid grid-cols-10 font-semibold" key={player?.id}>
               <div className="col-span-3 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.full_name}</div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
-              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
-              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.conference}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.division}</div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.position}</div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.height_feet}</div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.age}</div>

@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field
 from db.connection import player_collection
+from utils.guess_helpers import map_team_to_conf_div
 
 class ActivePlayerDataModel(BaseModel):
     id: int = Field(..., alias='_id')
@@ -58,6 +59,9 @@ async def guess_player(id):
     id = int(id)
     player_data = player_collection.find_one({"_id": id})
     if player_data:
+        eval_team = map_team_to_conf_div(player_data['current_team'])
+        player_data['conference'] = eval_team['conference']
+        player_data['division'] = eval_team['division']
         return jsonable_encoder(player_data)
     else:
         return None

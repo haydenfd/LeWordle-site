@@ -5,6 +5,8 @@ from pydantic import BaseModel, Field
 from db.connection import player_collection
 from utils.guess_helpers import map_team_to_conf_div
 
+correct_player_id = 2544
+
 class ActivePlayerDataModel(BaseModel):
     id: int = Field(..., alias='_id')
     first_name: str
@@ -56,12 +58,26 @@ async def get_all_player_data():
 
 @players.get("/guess_player/{id}")
 async def guess_player(id):
+
+    correct_player = player_collection.find_one({"_id": correct_player_id})
+
     id = int(id)
     player_data = player_collection.find_one({"_id": id})
     if player_data:
         eval_team = map_team_to_conf_div(player_data['current_team'])
         player_data['conference'] = eval_team['conference']
         player_data['division'] = eval_team['division']
+
+        if player_data['current_team'] == correct_player['current_team']:
+            player_data['tricode_evaluation'] = 2
+
+        eval_correct_team = map_team_to_conf_div(correct_player['current_team'])
+
+        if eval_team['conference'] == eval_correct_team['conference']:
+            player_data['conference_evaluation'] = 2
+
+        if eval_team['division'] == eval_correct_team['division']:
+            player_data['division_evaluation'] = 2    
         return jsonable_encoder(player_data)
     else:
         return None

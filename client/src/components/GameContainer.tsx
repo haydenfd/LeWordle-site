@@ -5,6 +5,7 @@ import { fuseOptions } from '@/utils'
 import Fuse from 'fuse.js'
 import { Combobox } from "@headlessui/react"
 import { GuessTeamBox } from './GuessBox/GuessTeamBox'
+import { GuessBox } from './GuessBox/GuessBox'
 
 type ActivePlayerDataSingleInterface = {
   _id: number,
@@ -168,7 +169,7 @@ const GameContainer = () => {
               <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessTeamBox tricode={player?.current_team} tricode_evaluation={player?.tricode_evaluation}/></div>
               <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessTeamBox conference={player?.conference} conference_evaluation={player?.conference_evaluation}/></div>
               <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessTeamBox division={player?.division} division_evaluation={player?.division_evaluation}/></div>
-              <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.position}</div>
+              <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessBox position={player?.position} position_evaluation={player?.position_evaluation}/></div>
               <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.height_feet}</div>
               <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.age}</div>
               <div className="col-span-1 text-center bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.jersey_number}</div>   

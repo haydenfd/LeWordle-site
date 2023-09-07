@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from pydantic import BaseModel, Field
 from db.connection import player_collection
-from utils.guess_helpers import map_team_to_conf_div
+from utils.guess_helpers import map_team_to_conf_div, calculate_position_similarity
 
 correct_player_id = 2544
 
@@ -77,7 +77,10 @@ async def guess_player(id):
             player_data['conference_evaluation'] = 2
 
         if eval_team['division'] == eval_correct_team['division']:
-            player_data['division_evaluation'] = 2    
+            player_data['division_evaluation'] = 2 
+
+        position_eval =calculate_position_similarity(player_data['position'], correct_player['position'])
+        player_data['position_evaluation'] = position_eval   
         return jsonable_encoder(player_data)
     else:
         return None

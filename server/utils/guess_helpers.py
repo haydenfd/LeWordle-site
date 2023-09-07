@@ -36,3 +36,34 @@ def map_team_to_conf_div(team_tricode: str) -> dict[str, str]:
 
     if team_tricode in nba_team_info:
         return nba_team_info[team_tricode]
+    
+def calculate_position_similarity(position1, position2):
+
+    # G, F, C, G-F, F-G, C-F, F-C
+    # G -- 1
+    # F -- 3
+    # G-F or F-G -- 2
+
+    # C -- 5
+    # F-C or C-F -- 4
+    position_mapping = {
+    "G": 1,
+    "F": 3,
+    "G-F": 2,
+    "F-G": 2,
+    "C": 5,
+    "F-C": 4,
+    "C-F": 4,
+    }
+
+    position1_mapping = position_mapping[position1]
+    position2_mapping = position_mapping[position2]
+
+    mapping_eval = abs(position1_mapping - position2_mapping)
+    
+    if mapping_eval == 0:
+        return 2
+    elif mapping_eval == 1:
+        return 1
+    else: 
+        return 0

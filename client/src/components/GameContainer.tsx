@@ -4,7 +4,6 @@ import axios from 'axios'
 import { fuseOptions } from '@/utils'
 import Fuse from 'fuse.js'
 import { Combobox } from "@headlessui/react"
-import React from "react";
 
 type ActivePlayerDataSingleInterface = {
   _id: number,
@@ -73,9 +72,8 @@ const GameContainer = () => {
   useEffect(() => {
     
     const fetchAllPlayersOnPageLoad = async () => {
-      
+
     const endpoint = buildEndpoint(endpointsList.fetchAllPlayers)
-    
     await axios.get(endpoint).then((res) => 
     {
       setAllPlayers(res.data)
@@ -91,9 +89,20 @@ const GameContainer = () => {
     
     if (!selected) return 
 
+    console.log(selected)
     setGuessesMade(guessesMade + 1)
     setSearchInput('')
-    setGuessedPlayers([...guessedPlayers, selected])
+    
+    const guessPlayer = async () => {
+      let id = selected._id as number
+      await axios(`http://localhost:8000/api/players/guess_player/${id}`).then((res) => {
+        console.log(res.data)
+        setGuessedPlayers([...guessedPlayers, res.data])
+        console.log(guessedPlayers)
+      })
+    }
+
+    guessPlayer()
   }, [selected])
   
   return (
@@ -139,9 +148,9 @@ const GameContainer = () => {
 
       </Combobox>
 
-      <div className='mt-6'>
+      <div className='mt-6 mb-6'>
         <div className="w-full p-1 text-lakerPurple">
-        <div className="flex flex-col w-[85%] mx-auto">
+        <div className="flex flex-col w-[85%] mx-auto overflow-y-auto">
           <div className="grid grid-cols-10 border-y-4 border-y-lakerPurple">
             <div className="col-span-3 text-center"></div>
             <div className="col-span-1 text-center">Team</div>
@@ -154,12 +163,15 @@ const GameContainer = () => {
           </div>
 
           {guessedPlayers.map((player) => (
-            <div className="grid grid-cols-5" key={player.id}>
-              <div className="col-span-1 w-1/5">{player.name}</div>
-              <div className="col-span-1">{player.team}</div>
-              <div className="col-span-1">{player.conf}</div>
-              <div className="col-span-1">{player.div}</div>
-              <div className="col-span-1">{player.pos}</div>
+            <div className="grid grid-cols-10 font-semibold" key={player?.id}>
+              <div className="col-span-3 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.full_name}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.position}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.height_feet}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.age}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.jersey_number}</div>   
             </div>
           ))}
         </div>

@@ -4,6 +4,7 @@ import axios from 'axios'
 import { fuseOptions } from '@/utils'
 import Fuse from 'fuse.js'
 import { Combobox } from "@headlessui/react"
+import { GuessTeamBox } from './GuessBox/GuessTeamBox'
 
 type ActivePlayerDataSingleInterface = {
   _id: number,
@@ -164,9 +165,9 @@ const GameContainer = () => {
           {guessedPlayers.map((player) => (
             <div className="grid grid-cols-10 font-semibold" key={player?.id}>
               <div className="col-span-3 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.full_name}</div>
-              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.current_team}</div>
-              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.conference}</div>
-              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.division}</div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessTeamBox tricode={player?.current_team}/></div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessTeamBox conference={player?.conference} /></div>
+              <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple"><GuessTeamBox division={player?.division} /></div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.position}</div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.height_feet}</div>
               <div className="col-span-1 text-center p-3 bg-gray-100 border-x-2 border-x-lakerPurple border-b-2 border-b-lakerPurple">{player?.age}</div>

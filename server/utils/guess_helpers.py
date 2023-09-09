@@ -67,3 +67,33 @@ def calculate_position_similarity(position1, position2):
         return 1
     else: 
         return 0
+
+def calculate_height_similarity(guess_height_ft, guess_height_in, correct_height_ft, correct_height_in):
+    guess_height = (12 * guess_height_ft) + guess_height_in
+    correct_height = (12 * correct_height_ft) + correct_height_in
+    if guess_height == correct_height:
+        return 0
+    elif abs(guess_height - correct_height) <= 2:
+        if correct_height > guess_height:
+            return 1
+        else:
+            return -1
+    else:
+        if correct_height > guess_height:
+            return 2
+        else:
+            return -2
+         
+def calculate_age_similarity(guess_age, correct_age):
+    if guess_age == correct_age:
+        return 0
+    elif abs(guess_age - correct_age <= 2):
+        if (correct_age > guess_age):
+            return 1
+        else:
+            return -1
+    else:
+        if correct_age > guess_age:
+            return 2
+        else:
+            return -2

@@ -2,7 +2,7 @@ import React from 'react'
 
 type GuessBoxProps = {
   position_evaluation? : number
-  position?:string
+  position?:string,
 }
 export const GuessBox = (props: GuessBoxProps) => {
   let bgColor = 'lightgray'

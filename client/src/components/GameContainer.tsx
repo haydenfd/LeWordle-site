@@ -74,16 +74,23 @@ const GameContainer = () => {
 
   useEffect(() => {
     
-    const fetchAllPlayersOnPageLoad = async () => {
+    // const fetchAllPlayersOnPageLoad = async () => {
 
-    const endpoint = buildEndpoint(endpointsList.fetchAllPlayers)
-    await axios.get(endpoint).then((res) => 
-    {
-      setAllPlayers(res.data)
-    })
-    }
+    // const endpoint = buildEndpoint(endpointsList.fetchAllPlayers)
+    // await axios.get(endpoint).then((res) => 
+    // {
+    //   setAllPlayers(res.data)
+    // })
+    // }
 
-    fetchAllPlayersOnPageLoad()
+    // fetchAllPlayersOnPageLoad()
+
+      const test = async () => {
+        const url = 'http://localhost:8000/api/users/'
+        await axios.get(url).then(res => console.log(res))
+      }
+
+      test()
 
   }, [])
 

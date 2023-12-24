@@ -1,14 +1,11 @@
 # FastAPI
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-# from router import players, users
 from routers import user_router
-
 
 app = FastAPI()
 
-origins = ['http://localhost:3000', 'http://127.0.0.1:3000',
-           'https://localhost:3000', 'https://127.0.0.1:3000'] 
+origins = ['http://localhost:3000', 'http://127.0.0.1:3000'] 
 
 app.add_middleware(
     CORSMiddleware,
@@ -19,10 +16,3 @@ app.add_middleware(
 )
 
 app.include_router(user_router.user_router)
-
-# app.include_router(players.players)
-# app.include_router(users.users)
-
-
-
-

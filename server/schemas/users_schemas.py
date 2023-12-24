@@ -1,6 +1,0 @@
-from enum import Enum
-
-class UserStatus(Enum):
-    NEW_USER="NEW_USER"
-    NEW_SESSION_OLD_USER="NEW_SESSION_OLD_USER"
-    OLD_SESSION_OLD_USER="OLD_SESSION_OLD_USER"

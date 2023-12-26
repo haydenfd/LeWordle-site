@@ -1,4 +1,3 @@
-import { buildEndpoint, endpointsList } from '@/api'
 import {Fragment, useEffect, useState, ChangeEvent } from 'react'
 import axios from 'axios'
 import { fuseOptions } from '@/utils'
@@ -7,23 +6,17 @@ import { Combobox } from "@headlessui/react"
 import { GuessTeamBox } from './GuessBox/GuessTeamBox'
 import { GuessBox } from './GuessBox/GuessBox'
 import { GuessNumericBox } from './GuessBox/GuessNumericBox'
-
-type ActivePlayerDataSingleInterface = {
-  _id: number,
-  first_name: string,
-  last_name: string,
-  full_name: string
-}
-
+import { endpointMapping, buildApiEndpoint } from '@/api'
+import { SearchPlayerType } from '@/types/types'
 
 type InputMouseEventType = ChangeEvent<HTMLInputElement>
 
 const GameContainer = () => {
 
-  const [allPlayers, setAllPlayers] = useState<Array<ActivePlayerDataSingleInterface>>([])
-  const [suggestedPlayers, setSuggestedPlayers] = useState<Array<ActivePlayerDataSingleInterface>>([])
+  const [allPlayers, setAllPlayers] = useState<Array<SearchPlayerType>>([])
+  const [suggestedPlayers, setSuggestedPlayers] = useState<Array<SearchPlayerType>>([])
   const [guessedPlayers, setGuessedPlayers] = useState<Array<any>>([])
-  const [selected, setSelected] = useState<ActivePlayerDataSingleInterface | null>(null)
+  const [selected, setSelected] = useState<SearchPlayerType | null>(null)
   const [searchInput, setSearchInput] = useState<string>('')
   let [guessesMade, setGuessesMade] = useState<number>(0)
 
@@ -32,7 +25,7 @@ const GameContainer = () => {
     setSearchInput(e.target.value)
   }
 
-  const ifGuessed = (player: ActivePlayerDataSingleInterface) => {
+  const ifGuessed = (player: SearchPlayerType) => {
 
     for (let i = 0; i < guessedPlayers.length; i++)
     {
@@ -50,7 +43,7 @@ const GameContainer = () => {
       const fuse = new Fuse(allPlayers, fuseOptions)
       let fuseResults = fuse.search(searchInput).splice(0,7)
       
-      let players:Array<ActivePlayerDataSingleInterface> = []
+      let players:Array<SearchPlayerType> = []
       for (let i = 0; i < fuseResults.length; i++)
       {
         let player = fuseResults[i].item
@@ -74,23 +67,17 @@ const GameContainer = () => {
 
   useEffect(() => {
     
-    // const fetchAllPlayersOnPageLoad = async () => {
+    const fetchAllPlayersOnPageLoad = async () => {
 
-    // const endpoint = buildEndpoint(endpointsList.fetchAllPlayers)
-    // await axios.get(endpoint).then((res) => 
-    // {
-    //   setAllPlayers(res.data)
-    // })
-    // }
+    const endpoint = buildApiEndpoint(endpointMapping.fetchAllPlayers)
+  
+    await axios.get(endpoint).then((res) => 
+    {
+      setAllPlayers(res.data)
+    })
+    }
 
-    // fetchAllPlayersOnPageLoad()
-
-      const test = async () => {
-        const url = 'http://localhost:8000/api/users/'
-        await axios.get(url).then(res => console.log(res))
-      }
-
-      test()
+    fetchAllPlayersOnPageLoad()
 
   }, [])
 
@@ -116,7 +103,7 @@ const GameContainer = () => {
   
   return (
     <div className='min-h-[60vh] text-center'>
-      <Combobox as={Fragment} value={selected} onChange={(e:ActivePlayerDataSingleInterface) => {
+      <Combobox as={Fragment} value={selected} onChange={(e:SearchPlayerType) => {
         setSelected(e)
       }
       }>
@@ -137,7 +124,7 @@ const GameContainer = () => {
               <div className="relative w-3/5 md:w-2/5 bg-blue-400 mx-auto">
                 <Combobox.Options className="absolute text-left w-full font-semibold border-b-2 border-x-2 border-lakerGold z-40">
                   {
-                    suggestedPlayers.map((player:ActivePlayerDataSingleInterface) => (
+                    suggestedPlayers.map((player:SearchPlayerType) => (
                       <Combobox.Option
                       key={player._id} 
                       value={player}

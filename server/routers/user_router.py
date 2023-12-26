@@ -14,6 +14,15 @@ async def find_latest_session_id(user_id:int):
     
     except Exception as err:
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, str(err))
+    
+async def get_latest_session(user_id: int):
+    try: 
+        latest_session = session_collection.find({"user_id": user_id}).sort("session_id", -1).limit(1)
+        print(latest_session[0])
+        # return dict(latest_session[0])
+    except Exception as err:
+        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, str(err))
+    
 
 async def create_new_session(user_id:int, is_new_user:bool):
     new_session = {
@@ -24,6 +33,7 @@ async def create_new_session(user_id:int, is_new_user:bool):
 
     res = session_collection.insert_one(dict(new_session))
     return new_session
+
 
 
 '''
@@ -52,19 +62,23 @@ def get_highest_uid():
 
 '''
     - Fetches user info for existing users
+    - Fetches last active session for existing user
 
 '''
 @user_router.get("/{user_id}")
 async def test(user_id: int):
 
     user = user_collection.find_one({"user_id": user_id})
-    response_data = serialize_user_record(user) if user else { "User": "DNE"}
+    user_data = serialize_user_record(user) if user else { "User": "DNE"}
+    session_data = get_latest_session(user_id)
 
     return JSONResponse(
-        jsonable_encoder(dict(response_data)), 
+        jsonable_encoder(dict({
+            "user": user_data,
+            # "session": session_data,
+        })), 
         status_code=status.HTTP_200_OK
     )
-
 
 
 '''

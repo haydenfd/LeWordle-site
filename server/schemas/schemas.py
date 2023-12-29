@@ -13,10 +13,11 @@ def serialize_all_players_player_record(player) -> dict:
         "full_name": str(player["full_name"]),
     }
 
-# def serialize_session_record(session) -> dict:
-#     return {
-#         "id": str(session["_id"]),
-#         "user_id": int(session["user_id"]),
-#         "session_id": int(session["session_id"]),
-#         "status": int(session["status"]),
-#     }
+def serialize_session_record(session) -> dict:
+    return {
+        "id": str(session["_id"]),
+        "user_id": int(session["user_id"]),
+        "session_id": int(session["session_id"]),
+        "status": int(session["status"]),
+        "correct_player_id": str(session["correct_player_id"]),
+    }

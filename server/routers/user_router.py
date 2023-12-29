@@ -2,40 +2,12 @@ from fastapi import APIRouter, status, HTTPException
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from db.db import user_collection, session_collection
-from schemas.schemas import serialize_user_record
+from schemas.schemas import serialize_user_record, serialize_session_record
+from utilities.utils import create_new_session
 
 user_router = APIRouter(prefix='/api/users')
 
-async def find_latest_session_id(user_id:int):
-    try:
-        highest_session = session_collection.find({"user_id": user_id}).sort("session_id", -1).limit(1)
-        new_session_id = highest_session[0]["session_id"] + 1
-        return new_session_id
     
-    except Exception as err:
-        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, str(err))
-    
-async def get_latest_session(user_id: int):
-    try: 
-        latest_session = session_collection.find({"user_id": user_id}).sort("session_id", -1).limit(1)
-        print(latest_session[0])
-        # return dict(latest_session[0])
-    except Exception as err:
-        raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, str(err))
-    
-
-async def create_new_session(user_id:int, is_new_user:bool):
-    new_session = {
-        "status": 0,
-        "user_id": user_id,
-        "session_id": find_latest_session_id() if not is_new_user else 0,
-    }
-
-    res = session_collection.insert_one(dict(new_session))
-    return new_session
-
-
-
 '''
     Necessary routes - 
     (1) Retrieve user, statistics based on ID
@@ -59,23 +31,26 @@ def get_highest_uid():
     highest_user = user_collection.find_one(sort=[("user_id", -1)])
     return highest_user["user_id"] if highest_user else 0
 
-
 '''
     - Fetches user info for existing users
     - Fetches last active session for existing user
 
 '''
-@user_router.get("/{user_id}")
-async def test(user_id: int):
+@user_router.get("/{user_id}/{session_id}")
+async def test(user_id: int, session_id: int):
 
     user = user_collection.find_one({"user_id": user_id})
     user_data = serialize_user_record(user) if user else { "User": "DNE"}
-    session_data = get_latest_session(user_id)
+
+    # initialize session - create a new session if one DNE OR get back the old one
+
+    session = session_collection.find_one({"session_id": session_id, "user_id": user_id})
+    session_data = serialize_session_record(session)
 
     return JSONResponse(
         jsonable_encoder(dict({
             "user": user_data,
-            # "session": session_data,
+            "session": session_data,
         })), 
         status_code=status.HTTP_200_OK
     )
@@ -103,9 +78,8 @@ async def init_user():
 
     res = user_collection.insert_one(dict(new_user))
 
+    # create a new session for the user
     new_session = await create_new_session(new_user_id, True)
-    print(new_session)
-    # create a new session for user
 
     return JSONResponse(
         dict({
@@ -116,5 +90,4 @@ async def init_user():
         )
 
 # My dad is from St. Columba's HS, Delhi. He made me add this comment. 
-
 

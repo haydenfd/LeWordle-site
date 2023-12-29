@@ -19,11 +19,14 @@ export const Home = () =>
   const prelimUserSetup = async () => {
 
     let user_id:string = localStorage.getItem("user_id") || ""
+    let session_id: string = localStorage.getItem("session_id") || ""
     let endpoint:string = ''
 
+    // old user
     if (user_id != "") {
-      endpoint = buildApiEndpoint(endpointMapping.retrieveUser) + user_id
-      console.log(endpoint)
+
+      endpoint = buildApiEndpoint(endpointMapping.retrieveUser) + user_id + "/" + session_id
+
       // TODO: FIX RETRIEVAL HERE
       await axios.get(endpoint).then(( { data } ) => {
         console.log(data)
@@ -31,8 +34,12 @@ export const Home = () =>
 
     }
 
+
+    // new user
     else {
+
       endpoint = buildApiEndpoint(endpointMapping.initUser)
+
       await axios.post(endpoint).then(( {data} ) => {
         localStorage.setItem("user_id", data["user"]["user_id"])
         localStorage.setItem("session_id", data["session"]["session_id"])
